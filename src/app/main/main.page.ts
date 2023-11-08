@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contacts, EmailType, PhoneType } from '@capacitor-community/contacts';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
@@ -7,8 +8,9 @@ import { Contacts, EmailType, PhoneType } from '@capacitor-community/contacts';
 })
 export class MainPage implements OnInit {
   contacts: any[] = [];
-  // result: any;
-  // contact: any;
+  qrCodeString = 'This is a secret qr code message';
+  scannedResult: any;
+  content_visibility = '';
 
   constructor() {}
 
@@ -17,24 +19,24 @@ export class MainPage implements OnInit {
   }
 
   async getContacts() {
-     try {
+    try {
       const permission = await Contacts.requestPermissions();
       console.log('permission: ', permission.contacts);
-      if(!permission?.contacts) return;
-      else if(permission?.contacts == 'granted') {
+      if (!permission?.contacts) return;
+      else if (permission?.contacts == 'granted') {
         const result = await Contacts.getContacts({
           projection: {
             name: true,
             phones: true,
             emails: true,
-            image: true
-          }
+            image: true,
+          },
         });
         console.log('result: ', result);
         this.contacts = result.contacts;
         console.log(this.contacts);
       }
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -42,41 +44,6 @@ export class MainPage implements OnInit {
   joinNumbers(array: any) {
     return array.map((x: any) => x.number).join(' | ');
   }
-  // async createContact() {
-  //   try {
-  //     const result = await Contacts.createContact({
-  //       contact: {
-  //         name: {
-  //           given: 'Banking',
-  //           family: ' Technyks',
-  //         },
-  //         phones: [
-  //           {
-  //             type: PhoneType.Home,
-  //             number: '9101010110',
-  //           },
-  //           {
-  //             type: PhoneType.Work,
-  //             number: '9101010111',
-  //           },
-  //         ],
-  //         emails: [
-  //           {
-  //             type: EmailType.Home,
-  //             address: 'bankingtechnyks@gmail.com',
-  //           },
-  //         ],
-  //       },
-  //     });
-  //     // this.result = result;
-  //     const new_contact = await this.getContact(result?.contactId);
-  //     // this.contact = new_contact;
-  //     this.contacts.push(new_contact?.contact);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
   async getContact(contactId: any) {
     const new_contact = await Contacts.getContact({
       contactId: contactId,
@@ -91,17 +58,63 @@ export class MainPage implements OnInit {
     return new_contact;
   }
 
+  async check() {
+    try {
+      const status = await BarcodeScanner.checkPermission({ force: true });
 
-  // async pickContact() {
-  //   const picked_contact = await Contacts.pickContact({
-  //     projection: {
-  //       name: true,
-  //       phones: true,
-  //       emails: true,
-  //       image: true,
-  //     },
-  //   });
-  //   // this.contact = picked_contact;
-  //   return picked_contact;
-  // }
+      if (status.granted) {
+        // Permission already granted, you can proceed with scanning.
+        console.log('Permission already granted');
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
+  async startScan() {
+    try {
+      console.log('check');
+
+      const permission = await this.check();
+      // console.log(permission);
+
+      if (!permission) {
+        console.log(permission);
+        alert('Permission not granted');
+        return;
+      }
+      console.log('Some start');
+
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body')?.classList.add("scanner-active'");
+      this.content_visibility = 'hidden';
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      BarcodeScanner.showBackground();
+      document.querySelector('body')?.classList.remove('scanner-active');
+      this.content_visibility = '';
+      if (result?.hasContent) {
+        this.scannedResult = result.content;
+        console.log(this.scannedResult);
+      }
+    } catch (e) {
+      console.log(e);
+      this.stopScan();
+    }
+  }
+
+  stopScan() {
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body')?.classList.remove('scanner-active');
+    this.content_visibility = '';
+  }
+
+  ngOnDestroy(): void {
+    this.stopScan();
+  }
 }
