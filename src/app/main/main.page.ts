@@ -21,7 +21,7 @@ export class MainPage implements OnInit {
     // }
 
     Contacts.getContacts().then((contacts) => {
-      console.log(contacts);
+      this.contacts = contacts;
     });
     // Contacts.getContacts().then((result) => {
     //   console.log(result);
