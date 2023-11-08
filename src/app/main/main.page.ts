@@ -101,6 +101,7 @@ export class MainPage implements OnInit {
         this.scannedResult = result.content;
         console.log(this.scannedResult);
       }
+      alert(result);
     } catch (e) {
       console.log(e);
       this.stopScan();
