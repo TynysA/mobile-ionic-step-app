@@ -19,12 +19,13 @@
   <ion-list *ngIf="contacts && contacts.length > 0">
     <!-- {{contacts[contacts.length - 1] | json}} -->
     <ion-item-sliding *ngFor="let contact of contacts">
-      <ion-item>
+      <ion-item [routerLink]="'/main/' + contact.contactId" [detail]="false">
         <ion-label>
           {{contact?.name?.display}}
           <p *ngIf="contact?.emails" style="margin-top: 3px">
             <ion-text> {{contact?.emails[0].address}} </ion-text>
           </p>
+          <p>{{joinNumbers(contact?.phones)}}</p>
         </ion-label>
       </ion-item>
 

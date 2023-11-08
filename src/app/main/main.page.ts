@@ -39,9 +39,9 @@ export class MainPage implements OnInit {
     }
   }
 
-  // joinNumbers(array: any) {
-  //   return array.map((x: any) => x.number).join(' | ');
-  // }
+  joinNumbers(array: any) {
+    return array.map((x: any) => x.number).join(' | ');
+  }
   // async createContact() {
   //   try {
   //     const result = await Contacts.createContact({
@@ -77,19 +77,19 @@ export class MainPage implements OnInit {
   //   }
   // }
 
-  // async getContact(contactId: any) {
-  //   const new_contact = await Contacts.getContact({
-  //     contactId: contactId,
-  //     projection: {
-  //       name: true,
-  //       phones: true,
-  //       emails: true,
-  //       image: true,
-  //     },
-  //   });
-  //   // this.contact = new_contact;
-  //   return new_contact;
-  // }
+  async getContact(contactId: any) {
+    const new_contact = await Contacts.getContact({
+      contactId: contactId,
+      projection: {
+        name: true,
+        phones: true,
+        emails: true,
+        image: true,
+      },
+    });
+    // this.contact = new_contact;
+    return new_contact;
+  }
 
 
   // async pickContact() {
