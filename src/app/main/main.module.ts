@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { MainPageRoutingModule } from './main-routing.module';
 
 import { MainPage } from './main.page';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MainPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        MainPageRoutingModule,
+        MatIconModule
+    ],
   declarations: [MainPage]
 })
 export class MainPageModule {}
+

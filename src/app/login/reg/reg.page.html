@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <div class="login__wrap">
+    <div class="login__back">
+      <div class="login__title">SIGN UP</div>
+      <div class="login__inner">
+        <div class="input__inner">
+          <input [(ngModel)]="firstname" type="text" placeholder="Email address" class="input__block">
+        </div>
+        <div class="input__inner">
+          <input [(ngModel)]="lastname" type="text" placeholder="Lastname" class="input__block">
+        </div>
+        <div class="input__inner">
+          <input [(ngModel)]="patronymic" type="text" placeholder="Patronymic" class="input__block">
+        </div>
+        <div class="input__inner">
+          <input [(ngModel)]="email" type="text" placeholder="Email address" class="input__block">
+        </div>
+        <div class="input__inner">
+          <input [(ngModel)]="password" type="text" placeholder="Password" class="input__block">
+        </div>
+        <div class="input__inner">
+          <input [(ngModel)]="date" type="date" class="input__block">
+        </div>
+        <div class="btns">
+          <div class="btn__login" (click)="registration()">Sign Up</div>
+          <div class="btn__sign-up" (click)='toLoginPage()'>To Login</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

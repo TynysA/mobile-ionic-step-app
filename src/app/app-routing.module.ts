@@ -3,13 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'message/:id',
-    loadChildren: () =>
-      import('./view-message/view-message.module').then(
-        (m) => m.ViewMessagePageModule
-      ),
-  },
-  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
@@ -25,11 +18,8 @@ const routes: Routes = [
       import('./main/main.module').then((m) => m.MainPageModule),
   },
   {
-    path: 'main/:id',
-    loadChildren: () =>
-      import('./view-message/view-message.module').then(
-        (m) => m.ViewMessagePageModule
-      ),
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
   },
 ];
 

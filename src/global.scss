@@ -25,8 +25,101 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+html, body {
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  letter-spacing: normal !important;
+}
 
-body.scanner-active {
-  --background: transparent;
-  --ion-background-color: transparent;
+input {
+  box-sizing: border-box;
+}
+
+.ion-infinite-scroll{
+  display: none !important;
+}
+.infinite-loading{
+  display: none !important;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  color: rgba(0, 0, 0, 0.77);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: normal !important;
+  position: relative;
+  top: 2px;
+  text-align: start;
+}
+.mat-mdc-tab-header-pagination-controls-enabled .mat-mdc-tab-header-pagination{
+  display: none!important;
+}
+
+.mat-tab-list-wrapper {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.mat-tab-labels {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.mat-tab-label {
+  min-width: auto; /* Adjust this value as needed */
+  margin-right: 16px; /* Adjust this value as needed */
+}
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
+  flex-grow: 0 !important;
+  //padding-left: 8px;
+  //padding-right: 8px;
+  //height: 39px;
+}
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab{
+  .mdc-tab__text-label{
+    color: rgba(0, 0, 0, 0.77);
+  }
+}
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab.mdc-tab--active{
+  .mdc-tab__text-label{
+    color: #317CEC;
+  }
+}
+.mdc-tab-indicator {
+  display: none !important;
+}
+
+.mat-mdc-tab-list{
+  padding: 12px 0 10px 16px;
+  background-color: white;
+  border-bottom: 2px solid #317CEC;
+  color: #317CEC;
+  font-size: 14px;
+  font-weight: 500;
+  overflow-x: scroll;
+  transform: translateY(0px) !important;
+}
+
+.actions__btn{
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 40px;
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  .btn{
+    padding: 0 10px;
+    &.active{
+      color: red;
+    }
+    mat-icon{
+      width: 28px;
+      height: 28px;
+    }
+  }
 }

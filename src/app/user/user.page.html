@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <div class="user">
+    <div class="main__header">
+      <div class="main__logo">LOGO</div>
+      <!-- <div class="main__avatar">AVA</div> -->
+    </div>
+    <div class="user__info">
+      <div class="main__avatar">{{userName[0]}}</div>
+      <div class="user__name">{{userName}}</div>
+      <div class="user__nickname">{{userNickName}}</div>
+    </div>
+    <div class="user__balance">
+      <div class="coin__photo">
+        <img src="/assets/images/img10.png" alt="" />
+      </div>
+      <div class="balance__info">
+        <div class="balance__header">Balance</div>
+        <div class="balance__number">2,999 <span>step coin</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions__btn">
+    <div class="btn" (click)="navigateToMain()">
+      <mat-icon class="icon" svgIcon="house"></mat-icon>
+    </div>
+    <div class="btn active">
+      <mat-icon class="icon" svgIcon="user"></mat-icon>
+    </div>
+  </div>
+</ion-content>

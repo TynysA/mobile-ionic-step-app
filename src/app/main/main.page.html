@@ -1,42 +1,39 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title> Test Task App </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="startScan()">
-        <ion-icon name="qr-code-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <!-- <ion-fab slot="fixed" horizontal="end" vertical="bottom">
-    <ion-fab-button (click)="createContact()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
-
-  <ion-list *ngIf="contacts && contacts.length > 0">
-    <!-- {{contacts[contacts.length - 1] | json}} -->
-    <ion-item-sliding *ngFor="let contact of contacts">
-      <ion-item [routerLink]="'/main/' + contact.contactId" [detail]="false">
-        <ion-label>
-          {{contact?.name?.display}}
-          <p *ngIf="contact?.emails" style="margin-top: 3px">
-            <ion-text> {{contact?.emails[0].address}} </ion-text>
-          </p>
-          <p>{{joinNumbers(contact?.phones)}}</p>
-        </ion-label>
-      </ion-item>
-
-      <!-- <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="pickContact()">
-          PICK
-        </ion-item-option>
-      </ion-item-options> -->
-    </ion-item-sliding>
-  </ion-list>
-
-  <!-- {{result | json}} -->
-  <!-- {{contact | json}} -->
+<ion-content [fullscreen]="true">
+  <div class="main">
+    <div class="main__header">
+      <div class="main__logo">LOGO</div>
+      <div class="main__avatar">AVA</div>
+    </div>
+    <div class="main__steps">
+      <div class="steps__inner">
+        <div class="steps__count">2300</div>
+        <div class="steps__text">steps today</div>
+      </div>
+    </div>
+    <div class="main__start">
+      <label class="container">
+        <div
+          class="circle"
+          [class.red]="stepCountStarted"
+        >
+          <span class="start-text" *ngIf="!stepCountStarted" (click)="startStepCount()">
+            START
+          </span>
+          <span class="start-text" *ngIf="stepCountStarted" (click)="stopStepCount()">
+            STOP
+          </span>
+        </div>
+      </label>
+    </div>
+    <div class="main__news"></div>
+    <div class="main__shop"></div>
+  </div>
+  <div class="actions__btn">
+    <div class="btn active">
+      <mat-icon class="icon" svgIcon="house"></mat-icon>
+    </div>
+    <div class="btn" (click)="navigateToUser()">
+      <mat-icon class="icon" svgIcon="user"></mat-icon>
+    </div>
+  </div>
 </ion-content>

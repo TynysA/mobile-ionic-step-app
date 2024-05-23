@@ -1,19 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-item>
-    <ion-label position="floating">Username:user</ion-label>
-    <ion-input [(ngModel)]="username" name="username" type="text" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Password:user</ion-label>
-    <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
-  </ion-item>
-
-  <ion-button expand="full" (click)="login()">Login</ion-button>
+<ion-content [fullscreen]="true">
+  <div class="login__wrap">
+    <div class="login__back">
+      <div class="login__title">LOGIN/SIGN UP</div>
+      <div class="login__inner">
+        <div class="inner__title">WELCOME TO ZAM-STEP</div>
+        <div class="input__inner">
+          <input [(ngModel)]="username" type="text" placeholder="Email address" class="input__block">
+        </div>
+        <div class="input__inner">
+          <input [(ngModel)]="password" type="text" placeholder="Password" class="input__block">
+        </div>
+        <div class="btns">
+          <div class="btn__login" (click)="login()">LOGIN</div>
+          <div class="btn__sign-up" (click)='reg()'>Sign Up</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
